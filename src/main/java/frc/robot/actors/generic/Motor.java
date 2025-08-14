@@ -1,4 +1,4 @@
-package frc.robot.actors;
+package frc.robot.actors.generic;
 
 // Import Phoenix6 Hardware Libraries
 import com.ctre.phoenix6.hardware.TalonFX;

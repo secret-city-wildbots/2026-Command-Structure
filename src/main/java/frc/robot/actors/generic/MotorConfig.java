@@ -1,4 +1,4 @@
-package frc.robot.actors;
+package frc.robot.actors.generic;
 
 import frc.robot.Utils.RotationDir;
 

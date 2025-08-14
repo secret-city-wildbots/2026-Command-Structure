@@ -1,10 +1,8 @@
 package frc.robot.commands;
 
-// Interanl library Imports
-import frc.robot.subsystems.Intake;
-
 // Import WPILib Libraries
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.actors.subsystems.Intake;
 
 public class ScoreCoralCommand extends Command {
     // Real Variables
