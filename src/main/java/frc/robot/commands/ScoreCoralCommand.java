@@ -21,8 +21,8 @@ public class ScoreCoralCommand extends Command {
 
     @Override
     public void execute() {
-        // Call the Intake subsystem releaseGamePiece Function
-        intake.releaseGamePiece();
+        // Call the Intake subsystem releaseCoral Function
+        intake.releaseCoral();
     }
 
     @Override

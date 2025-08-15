@@ -12,6 +12,8 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCoralCommand;
 import frc.robot.commands.ScoreCoralCommand;
+import frc.robot.commands.IntakeAlgaeCommand;
+import frc.robot.commands.ScoreAlgaeCommand;
 // 3rd party packages
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -52,9 +54,14 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // Schedule `IntakeCoralCommand` when the Xbox controller's rightTrigger button is pressed, cancel on release
-    driveController.rightTrigger().whileTrue(new IntakeCoralCommand(intake));
     // Schedule `ScoreCoralCommand` when the Xbox controller's rightTrigger button is pressed, cancel on release
+    driveController.rightTrigger().whileTrue(new IntakeCoralCommand(intake));
     driveController.leftTrigger().whileTrue(new ScoreCoralCommand(intake));
+
+    // Schedule `IntakeAlgaeCommand` when the Xbox controller's rightBumper button is pressed, cancel on release
+    // Schedule `ScoreAlgaeCommand` when the Xbox controller's leftBumper button is pressed, cancel on release
+    driveController.rightBumper().whileTrue(new IntakeAlgaeCommand(intake));
+    driveController.leftBumper().whileTrue(new ScoreAlgaeCommand(intake));
   }
 
   /**
