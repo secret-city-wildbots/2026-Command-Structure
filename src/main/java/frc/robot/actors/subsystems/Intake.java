@@ -51,15 +51,29 @@ public class Intake extends SubsystemBase {
     /**
      * Sets the intake motor to spin spin in the direction to intake a coral piece
      */
-    public void acquireGamePiece() {
+    public void acquireCoral() {
         this.motor.dc(1.0);
     }
 
     /**
      * Sets the intake motor to spin spin in the direction to outtake a coral piece 
      */
-    public void releaseGamePiece() {
+    public void releaseCoral() {
         this.motor.dc(-1.0);
+    }
+
+    /**
+     * Sets the intake motor to spin spin in the direction to intake an algae piece
+     */
+    public void acquireAlgae() {
+        this.motor.dc(-1.0);
+    }
+
+    /**
+     * Sets the intake motor to spin spin in the direction to outtake an algae piece 
+     */
+    public void releaseAlgae() {
+        this.motor.dc(1.0);
     }
 
     /**
