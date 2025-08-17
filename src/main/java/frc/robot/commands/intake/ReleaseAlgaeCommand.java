@@ -1,19 +1,21 @@
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
-// Import WPILib Libraries
+// Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.Command;
+
+// Import Subsystems
 import frc.robot.actors.subsystems.Intake;
 
-public class ReleaseCoralCommand extends Command {
+public class ReleaseAlgaeCommand extends Command {
     // Real Variables
     private final Intake intake;
 
     /**
-     * Creates and sets up the ScoreCoralCommand
+     * Creates and sets up the ScoreAlgaeCommand
      * 
      * @param intake The subsystem to be controlled by the command ({@link Intake})
      */
-    public ReleaseCoralCommand(Intake intake) {
+    public ReleaseAlgaeCommand(Intake intake) {
         // Assign the variables and add the subsystem as a requirement to the command
         this.intake = intake;
         addRequirements(intake);
@@ -21,8 +23,8 @@ public class ReleaseCoralCommand extends Command {
 
     @Override
     public void execute() {
-        // Call the Intake subsystem releaseCoral Function
-        intake.releaseCoral();
+        // Call the Intake subsystem releaseAlgae Function
+        intake.releaseAlgae();
     }
 
     @Override

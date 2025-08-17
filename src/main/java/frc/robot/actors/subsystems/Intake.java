@@ -1,8 +1,10 @@
 package frc.robot.actors.subsystems;
 
+// Import Custom Utils and Actors
 import frc.robot.Utils.MotorType;
 import frc.robot.actors.generic.Motor;
-// Import WPILib Libraries
+
+// Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 // Import WPILib, Math, and Unit Libraries - For Simulation
@@ -19,29 +21,27 @@ public class Intake extends SubsystemBase {
     // Real Variables
     private Motor motor;
     private int canID;
-    private boolean hasPiece = false;
+    private double kGearRatio;
 
     // Simulation Variables
-    private final TalonFXSimState motorSim;
-    private final double kGearRatio;
-    private final DCMotorSim motorSimModel;
+    private TalonFXSimState motorSim;
+    private DCMotorSim motorSimModel;
 
     /**
      * Creates the CoralIntake Class
      * 
-     * @param moduleNumber The module number of the intake, used to set the CAN ID
-     *                     of the motor
+     * @param canID The canID number of the intake, used to set the CAN ID of the motor
      */
     public Intake(int canID) {
         // initialize the module number and motor
         this.canID = canID;
         this.motor = new Motor(this.canID, MotorType.TFX);
+        this.kGearRatio = 10.0;
 
         // Initialize the simluation variables
         motorSim = motor.getSimStateTalonFX();
-        kGearRatio = 10.0;
         motorSimModel = new DCMotorSim(
-            LinearSystemId.createDCMotorSystem(DCMotor.getKrakenX60Foc(1), 0.001, kGearRatio),
+            LinearSystemId.createDCMotorSystem(DCMotor.getKrakenX60Foc(1), 0.001, this.kGearRatio),
             DCMotor.getKrakenX60Foc(1),
             0.001,
             0.05
@@ -117,7 +117,8 @@ public class Intake extends SubsystemBase {
      * @return true if the intake has a coral, false otherwise
      */
     public boolean get_hasPiece() {
-        return this.hasPiece;
+        // TODO: create logic to use a sensor to detect if we have a gamepiece or not. Beam break?
+        return false;
     }
 
     @Override
@@ -133,8 +134,8 @@ public class Intake extends SubsystemBase {
         motorSimModel.update(0.020); // 20ms update
 
         // Update the simulated TalonFX state with output from DCMotorSim
-        motorSim.setRawRotorPosition(motorSimModel.getAngularPosition().times(kGearRatio));
-        motorSim.setRotorVelocity(motorSimModel.getAngularVelocity().times(kGearRatio));
+        motorSim.setRawRotorPosition(motorSimModel.getAngularPosition().times(this.kGearRatio));
+        motorSim.setRotorVelocity(motorSimModel.getAngularVelocity().times(this.kGearRatio));
     }
 
 }

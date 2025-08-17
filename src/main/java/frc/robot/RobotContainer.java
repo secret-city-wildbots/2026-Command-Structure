@@ -4,17 +4,17 @@
 
 package frc.robot;
 
+// Import Constants
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.actors.subsystems.ExampleSubsystem;
+
+// Import Subsystems
 import frc.robot.actors.subsystems.Intake;
-// commands packages
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeCoralCommand;
-import frc.robot.commands.ReleaseCoralCommand;
-import frc.robot.commands.IntakeAlgaeCommand;
-import frc.robot.commands.ReleaseAlgaeCommand;
-// 3rd party packages
+import frc.robot.actors.subsystems.Pivot;
+import frc.robot.commands.auto.Autos;
+import frc.robot.commands.intake.*;
+import frc.robot.commands.pivot.*;
+
+// Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -27,10 +27,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Intake intake = new Intake(1);
+  private final Pivot pivot = new Pivot(2, 3);
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
+  // Instantiate a Command Xbox Controller
   private final CommandXboxController driveController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -49,10 +49,6 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
-
     // Schedule `IntakeCoralCommand` when the Xbox controller's rightTrigger button is pressed, cancel on release
     // Schedule `ScoreCoralCommand` when the Xbox controller's rightTrigger button is pressed, cancel on release
     driveController.rightTrigger().whileTrue(new IntakeCoralCommand(intake));
@@ -62,6 +58,21 @@ public class RobotContainer {
     // Schedule `ScoreAlgaeCommand` when the Xbox controller's leftBumper button is pressed, cancel on release
     driveController.rightBumper().whileTrue(new IntakeAlgaeCommand(intake));
     driveController.leftBumper().whileTrue(new ReleaseAlgaeCommand(intake));
+
+    // Schedule `PivotForwardCommand` when the Xbox controller's y button is pressed, cancel on release
+    // Schedule `PivotBackwardCommand` when the Xbox controller's a button is pressed, cancel on release
+    driveController.y().whileTrue(new PivotForwardCommand(pivot));
+    driveController.a().whileTrue(new PivotBackwardCommand(pivot));
+
+    // Schedule `PivotToPositionCommand` when the Xbox controller's b button is pressed. Will run until the isFinished condition is met.
+    // Schedule `PivotToPositionCommand` when the Xbox controller's x button is pressed. Will run until the isFinished condition is met.
+    driveController.b().onTrue(new PivotToPositionCommand(pivot, 50.0));
+    driveController.x().onTrue(new PivotToPositionCommand(pivot, 90.0));
+
+    // Schedule `PivotToPositionCommand` when the Xbox controller's D-Pad Up button is pressed. Will run until the isFinished condition is met.
+    // Schedule `PivotToPositionCommand` when the Xbox controller's D-Pad Down button is pressed. Will run until the isFinished condition is met.
+    driveController.povUp().onTrue(new PivotToPositionCommand(pivot, 175.0));
+    driveController.povDown().onTrue(new PivotToPositionCommand(pivot, 5.0));
   }
 
   /**
@@ -71,6 +82,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return Autos.exampleAuto(this.pivot, this.intake);
   }
 }

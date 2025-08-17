@@ -4,7 +4,10 @@
 
 package frc.robot;
 
+// Import WPILib Robot Libraries
 import edu.wpi.first.wpilibj.TimedRobot;
+
+// Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 

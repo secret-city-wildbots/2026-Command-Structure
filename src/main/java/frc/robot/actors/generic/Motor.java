@@ -2,6 +2,7 @@ package frc.robot.actors.generic;
 
 // Import Phoenix6 Hardware Libraries
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -327,6 +328,18 @@ public class Motor {
             case None:
                 System.err.println("tried to apply motor config on None motor with CanID " + this.CanID);
         }
+    }
+
+    public void applyTalonFXConfig(TalonFXConfiguration config) {
+        this.motorTFX.getConfigurator().apply(config);
+    }
+
+    public void applyControl(MotionMagicVoltage control) {
+        this.motorTFX.setControl(control);
+    }
+
+    public TalonFXConfiguration getConfig() {
+        return this.configTFX;
     }
 
     public TalonFXSimState getSimStateTalonFX() {

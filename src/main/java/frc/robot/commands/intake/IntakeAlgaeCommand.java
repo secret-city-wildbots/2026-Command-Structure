@@ -1,7 +1,9 @@
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
-// Import WPILib Libraries
+// Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.Command;
+
+// Import Subsystems
 import frc.robot.actors.subsystems.Intake;
 
 public class IntakeAlgaeCommand extends Command {
