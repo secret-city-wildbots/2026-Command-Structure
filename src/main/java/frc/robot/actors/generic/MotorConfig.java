@@ -1,6 +1,6 @@
 package frc.robot.actors.generic;
 
-import frc.robot.Utils.RotationDir;
+import frc.robot.utils.RotationDir;
 
 public class MotorConfig {
     public double peakForwardDC = 1.0;

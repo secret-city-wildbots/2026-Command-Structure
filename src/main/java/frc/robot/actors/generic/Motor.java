@@ -21,9 +21,8 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
-// Import Our Custom Utility Files
-import frc.robot.Utils.MotorType;
-import frc.robot.Utils.RotationDir;
+import frc.robot.utils.MotorType;
+import frc.robot.utils.RotationDir;
 
 public class Motor {
     // Generic Variables

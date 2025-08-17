@@ -1,9 +1,7 @@
 package frc.robot.actors.subsystems;
 
-// Import Custom Utils and Actors
-import frc.robot.Utils.MotorType;
 import frc.robot.actors.generic.Motor;
-
+import frc.robot.utils.MotorType;
 // Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
