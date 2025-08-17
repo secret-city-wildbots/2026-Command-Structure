@@ -112,3 +112,28 @@ This project supports **full robot simulation** using the WPILib **Sim GUI** and
 3. Now you can select a device, execute commands and see the simulated action performed on the graph:
 
 >> ![Simulation GUI screenshot 3](README_Pictures/phoenix_tuner_x_gui_3.png "Phoenix Tuner X GUI 3")
+
+#### 🎮 Scenarios to Test:
+
+The following controls will control the intake (Motor ID 1):
+   - Controller Right Trigger - Coral Intake
+   - Controller Left Trigger - Coral Release
+   - Controller Right Bumper - Algae Intake
+   - Controller Left Bumper - Algae Release
+
+   >> Note: These commands only run while the button is pressed / activated. When the button is released,
+   the command will stop running
+
+The following controls will control the pivot (Motor ID 2, Encoder ID 3):
+   - Controller Y Button - Pivot Forward
+   - Controller A Button - Pivot Backward
+
+   >> Note: These commands only run while the button is pressed / activated. When the button is released,
+   the command will stop running
+
+   - Controller B Button - Pivot To Position (50 deg)
+   - Controller X Button - Pivot To Position (90 deg)
+   - Controller D-Pad Up - Pivot To Position (175 deg)
+   - Controller D-Pad Down - Pivot To Position (5 deg)
+
+   >> Note: These commands will run (and stay running) when the button is pressed / activated until a condition is met.
