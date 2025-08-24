@@ -10,6 +10,9 @@ import frc.robot.Constants.OperatorConstants;
 // Import Subsystems
 import frc.robot.actors.subsystems.Intake;
 import frc.robot.actors.subsystems.Pivot;
+import frc.robot.actors.subsystems.Pivot2;
+
+// Import Commands
 import frc.robot.commands.auto.Autos;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.pivot.*;
@@ -29,6 +32,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Intake intake = new Intake(1);
   private final Pivot pivot = new Pivot(2, 3);
+  private final Pivot2 pivot2 = new Pivot2(4, 0);
 
   // Instantiate a Command Xbox Controller
   private final CommandXboxController driveController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -73,6 +77,11 @@ public class RobotContainer {
     // Schedule `PivotToPositionCommand` when the Xbox controller's D-Pad Down button is pressed. Will run until the isFinished condition is met.
     driveController.povUp().onTrue(new PivotToPositionCommand(pivot, 175.0));
     driveController.povDown().onTrue(new PivotToPositionCommand(pivot, 5.0));
+
+    // Schedule `Pivot2ToPositionCommand` when the Xbox controller's D-Pad Left button is pressed. Will run until the isFinished condition is met.
+    // Schedule `Pivot2ToPositionCommand` when the Xbox controller's D-Pad Right button is pressed. Will run until the isFinished condition is met.
+    driveController.povLeft().onTrue(new Pivot2ToPositionCommand(pivot2, 50.0));
+    driveController.povRight().onTrue(new Pivot2ToPositionCommand(pivot2, 90.0));
   }
 
   /**
