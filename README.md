@@ -135,5 +135,7 @@ The following controls will control the pivot (Motor ID 2, Encoder ID 3):
    - Controller X Button - Pivot To Position (90 deg)
    - Controller D-Pad Up - Pivot To Position (175 deg)
    - Controller D-Pad Down - Pivot To Position (5 deg)
+   - Controller D-Pad Left - Pivot To Position (50 deg)
+   - Controller D-Pad Right - Pivot To Position (90 deg)
 
    >> Note: These commands will run (and stay running) when the button is pressed / activated until a condition is met.
