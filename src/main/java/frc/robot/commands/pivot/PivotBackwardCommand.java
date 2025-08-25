@@ -36,7 +36,7 @@ public class PivotBackwardCommand extends Command {
     @Override
     public boolean isFinished() {
         // Do not end the command
-        // TODO: add logic to end the command when the encoder reaches a specific value?
+        // TODO: add logic to end the command when a limit is reached?
         return false;
     }
 }

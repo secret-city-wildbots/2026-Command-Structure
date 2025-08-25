@@ -5,12 +5,23 @@
 This FRC robot project is structured using the **Command-Based framework** recommended by WPILib. It is designed to be modular, readable, and easily extensible for both teleoperated and autonomous modes. The robot currently includes two core mechanisms: an `intake` and a `pivot`.
 
 - The **IntakeSubsystem** controls a single motor used to collect or eject game pieces.
+  - TalonFX Motor (Kraken X60 Kraken X44, Falcon 500)
+  - Improvement Opportunities: integrating a beam break or some other sensor in the simulation
+  - Note: simulation values (for the motor and encoder) can been seen in the **Phoenix Tuner X** application
 
 - The **PivotSubsystem** drives a pivoting arm using a motor and an `absolute encoder` for precise angular positioning. The pivot uses `Motion Magic` for smooth motion profiling, and supports software-defined soft limits to prevent over-rotation.
+  - TalonFX Motor (Kraken X60, Kraken X44, Falcon 500)
+  - Cancoder
+  - Note: simulation values (for the motor and encoder) can been seen in the **Phoenix Tuner X** application
+
+- The **Pivot2Subsystem** drives a pivoting arm using a motor and an `absolute encoder` for precise angular positioning. The pivot uses a `PID Controller` for smooth motion profiling, and supports software-defined soft limits to prevent over-rotation.
+  - TalonFX Motor (Kraken X60, Kraken X44, Falcon 500)
+  - Rev Throughbore absolute encoder (connected to the RoboRIO)
+  - Note: simulation values (for the motor) can been seen in the **Phoenix Tuner X** application and the simulation values (for the encoder) can be seen in the **WPILib Sim GUI**
 
 The project includes example commands to operate both mechanisms:
 
-- Commands to run the intake / pivot motosr at fixed speeds.
+- Commands to run the intake / pivot motors at fixed speeds.
 - A specific command that moves the pivot to a user defined angle using Motion Magic and finishes when within a configurable error tolerance.
 
 All control bindings are defined in `RobotContainer`, using the `onTrue()` and `whileTrue()` trigger methods to map controller inputs to subsystem behaviors. This project follows the standard directory and class layout defined by FIRST and WPILib for command-based robots.
@@ -135,7 +146,11 @@ The following controls will control the pivot (Motor ID 2, Encoder ID 3):
    - Controller X Button - Pivot To Position (90 deg)
    - Controller D-Pad Up - Pivot To Position (175 deg)
    - Controller D-Pad Down - Pivot To Position (5 deg)
-   - Controller D-Pad Left - Pivot To Position (50 deg)
-   - Controller D-Pad Right - Pivot To Position (90 deg)
+
+   >> Note: These commands will run (and stay running) when the button is pressed / activated until a condition is met.
+
+The following controls will control the pivot (Motor ID 4, Encoder Channel ID 0 (On the RIO)): 
+   - Controller D-Pad Left - Pivot2 To Position (50 deg)
+   - Controller D-Pad Right - Pivo2 To Position (90 deg)
 
    >> Note: These commands will run (and stay running) when the button is pressed / activated until a condition is met.

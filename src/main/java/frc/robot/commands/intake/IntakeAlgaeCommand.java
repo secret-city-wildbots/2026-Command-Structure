@@ -36,7 +36,7 @@ public class IntakeAlgaeCommand extends Command {
     @Override
     public boolean isFinished() {
         // Do not end the command
-        // TODO: add logic to end the command when a beam break is broken?
+        // TODO: add logic to end the command when a beam break is broken? We can use the pivot.get_hasPiece()
         return false;
     }
 }

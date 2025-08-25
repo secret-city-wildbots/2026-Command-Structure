@@ -36,7 +36,7 @@ public class Pivot2ForwardCommand extends Command {
     @Override
     public boolean isFinished() {
         // Do not end the command
-        // TODO: add logic to end the command when a beam break is broken?
+        // TODO: add logic to end the command when the encoder reaches a specific value or a limit is reached?
         return false;
     }
 }

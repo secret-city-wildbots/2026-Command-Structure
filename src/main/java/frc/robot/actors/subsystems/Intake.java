@@ -1,7 +1,9 @@
 package frc.robot.actors.subsystems;
 
+// Import custom actors and utils
 import frc.robot.actors.generic.Motor;
 import frc.robot.utils.MotorType;
+
 // Import WPILib Command Libraries
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -116,6 +118,7 @@ public class Intake extends SubsystemBase {
      */
     public boolean get_hasPiece() {
         // TODO: create logic to use a sensor to detect if we have a gamepiece or not. Beam break?
+        // TODO: do we need separate logic for if we have algae?
         return false;
     }
 

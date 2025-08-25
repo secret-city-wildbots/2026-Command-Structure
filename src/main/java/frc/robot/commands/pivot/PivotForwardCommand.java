@@ -36,7 +36,7 @@ public class PivotForwardCommand extends Command {
     @Override
     public boolean isFinished() {
         // Do not end the command
-        // TODO: add logic to end the command when a beam break is broken?
+        // TODO: add logic to end the command when a limit is reached?
         return false;
     }
 }

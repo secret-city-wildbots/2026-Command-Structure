@@ -1,5 +1,6 @@
 package frc.robot.actors.subsystems;
 
+// Import custom actors and utils
 import frc.robot.actors.generic.Motor;
 import frc.robot.utils.MotorType;
 
@@ -30,8 +31,8 @@ public class Pivot2 extends SubsystemBase {
     private int encoder_channelID;
 
     // Soft Limits
-    private double minAngle_deg = 2.0;   // Fully down position
-    private double maxAngle_deg = 180.0; // Fully up position
+    private double minAngle_deg = 2.0;   // max front position
+    private double maxAngle_deg = 180.0; // max back position
 
     // PID Controller
     private PIDController pid;
@@ -62,7 +63,7 @@ public class Pivot2 extends SubsystemBase {
 
         // initialize the PID
         // TODO: This needs to be tuned for the real system
-        this.pid = new PIDController(0.001, 0.0, 0.0);
+        this.pid = new PIDController(0.001, 0.001, 0.0);
 
         // Initialize the simluation variables for motor
         motorSim = motor.getSimStateTalonFX();
@@ -76,8 +77,6 @@ public class Pivot2 extends SubsystemBase {
 
         // Initialize the simulation variables for encoder
         encoderSim = new DutyCycleEncoderSim(this.encoder);
-
-        this.motor.resetPos(1.0);
     }
 
     /**
@@ -172,6 +171,7 @@ public class Pivot2 extends SubsystemBase {
             motorOutput = 0.0;
         }
 
+        // Send the output to the motor
         this.motor.dc(motorOutput);
     }
 
